@@ -28,9 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     email:{
       type: DataTypes.STRING,
       validate: {
-       len: {
-        args: [1,99],
-        msg: 'Name must be between 1 and 99 characters'
+       isEmail: {
+        msg: 'invaild email'
        }
       }
     },
@@ -53,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
     pendingUser.password = hash;
   });
 
-  user.prototype.validatePassword = function(typedPassword) {
+  user.prototype.validPassword = function(typedPassword) {
     let isCorrectPassword = bcrypt.compareSync(typedPassword, this.password); //boolean
 
     return isCorrectPassword;
@@ -65,6 +64,6 @@ module.exports = (sequelize, DataTypes) => {
 
     return userData;
   }
-  
+
   return user;
 };
