@@ -189,9 +189,10 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       validate: {
-        isEmail: {
-          msg: 'Invalid email'
-        }
+       len: {
+        args: [1,99],
+        msg: 'Name must be between 1 and 99 characters'
+       }
       }
     },
     password: {
@@ -207,8 +208,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'user',
   });
-
-  return user; // add functions above 
+    return user; // add functions above 
 };
 ```
 
